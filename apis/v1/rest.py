@@ -4,7 +4,7 @@ import apps.task.services as task_services
 from apis.v1 import schemas
 
 
-tasks_router = APIRouter(prefix='/tasks', tags=["tasks"])
+tasks_router = APIRouter(prefix='/api/v1/tasks', tags=["tasks"])
 
 
 @tasks_router.get('/', response_model=List[schemas.Task], status_code=status.HTTP_200_OK)
