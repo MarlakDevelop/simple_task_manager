@@ -27,24 +27,19 @@ async def read_task(tid: int) -> Task:
 
 async def update_task(tid: int, name: str, completed: bool) -> Task:
     task = await Task.objects.get(id=tid)
-    kwargs = {
-        'name': name,
-        'completed': completed
-    }
-    task.update(**kwargs)
-    task.save()
+    task.name = name
+    task.completed = completed
+    await task.update()
     return task
 
 
 async def update_task_partial(tid: int, name: str or None = None, completed: bool or None = None) -> Task:
     task = await Task.objects.get(id=tid)
-    kwargs = {}
     if name is not None:
-        kwargs['name'] = name
+        task.name = name
     if completed is not None:
-        kwargs['completed'] = completed
-    task.update(**kwargs)
-    task.save()
+        task.completed = completed
+    await task.update()
     return task
 
 
